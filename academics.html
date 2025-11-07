@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Academics • Victory Educational Institute | Agona Swedru</title>
+
+  <!-- Favicon + App Icon -->
+  <link rel="icon" href="logo.jpg" type="image/jpeg"/>
+  <link rel="apple-touch-icon" href="logo.jpg"/>
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap"></noscript>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#E8A200",        /* Gold */
+            secondary: "#3F194F",      /* Deep Purple */
+            ink: "#0b1220",
+            "background-light": "#F8F7F5",
+            "background-dark": "#140E19",
+          },
+          fontFamily: { display: ["Work Sans", "system-ui", "sans-serif"] },
+          borderRadius: { DEFAULT:"0.75rem", xl:"1rem", "2xl":"1.25rem", full:"9999px" },
+          letterSpacing: { tightest: "-.02em" },
+          keyframes: {
+            floaty: { "0%,100%":{transform:"translateY(0)"}, "50%":{transform:"translateY(-8px)"} },
+            fadeUp: { "0%":{opacity:0,transform:"translateY(24px)"}, "100%":{opacity:1,transform:"translateY(0)"} },
+            marquee: { "0%":{transform:"translateX(0)"}, "100%":{transform:"translateX(-50%)"} }
+          },
+          animation: {
+            floaty: "floaty 6s ease-in-out infinite",
+            fadeUp: "fadeUp .8s ease forwards",
+            marquee: "marquee 22s linear infinite",
+          },
+          boxShadow: {
+            soft: "0 10px 25px rgba(0,0,0,.08)",
+            glow: "0 10px 30px rgba(232,162,0,.25)",
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    :root { --dur: 900ms; --delay: 140ms; }
+    body {
+      min-height: 100dvh;
+      background:
+        radial-gradient(1200px 800px at 10% -20%, rgba(232,162,0,.12), transparent 60%),
+        radial-gradient(900px 600px at 110% 10%, rgba(63,25,79,.18), transparent 60%);
+    }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.6)); backdrop-filter: blur(10px); }
+    .glass-dark { background: linear-gradient(180deg, rgba(20,14,25,.75), rgba(20,14,25,.55)); backdrop-filter: blur(10px); }
+    .slide-left { opacity: 0; transform: translateX(-28px); transition: opacity var(--dur) ease, transform var(--dur) ease; }
+    .fade-up    { opacity: 0; transform: translateY(18px); transition: opacity var(--dur) ease, transform var(--dur) ease; }
+    .show       { opacity: 1; transform: translate(0,0); }
+    .lift { transform: translateY(0); transition: transform 300ms ease, box-shadow 300ms ease; }
+    .lift:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+    .logo-shadow { filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)) drop-shadow(0 2px 4px rgba(232,162,0,.25)); }
+    .parallax-hero [data-parallax] { transition: transform .6s ease-out; will-change: transform; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* ---------- Program Card “Pro” Styles ---------- */
+    .program-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgba(63,25,79,.15);
+      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.66));
+    }
+    .dark .program-card {
+      border-color: rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(20,14,25,.82), rgba(20,14,25,.6));
+    }
+    .program-card::before{
+      content:"";
+      position:absolute; inset:-40% -30% auto auto;
+      height:70%; width:70%;
+      filter: blur(24px); opacity:.55; pointer-events:none;
+      transform: rotate(12deg);
+    }
+    .program-head {
+      display:flex; align-items:center; gap:.6rem;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .program-chip{
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.25rem .6rem; border-radius:999px;
+      font-size:.74rem; font-weight:700;
+      background: rgba(255,255,255,.65); border:1px solid rgba(255,255,255,.45);
+      color:#1f2937;
+    }
+    .dark .program-chip{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); color: #e5e7eb; }
+
+    /* Gradients per program (used in ::before glow and top stripe) */
+    .prog-science::before{ background: radial-gradient(closest-side, rgba(16,185,129,.55), rgba(59,130,246,.45), transparent 70%); }
+    .prog-arts::before{    background: radial-gradient(closest-side, rgba(244,63,94,.55), rgba(168,85,247,.45), transparent 70%); }
+    .prog-business::before{background: radial-gradient(closest-side, rgba(234,179,8,.55), rgba(232,162,0,.55), transparent 70%); }
+    .prog-agric::before{   background: radial-gradient(closest-side, rgba(132,204,22,.55), rgba(34,197,94,.45), transparent 70%); }
+    .prog-home::before{    background: radial-gradient(closest-side, rgba(249,115,22,.55), rgba(234,88,12,.45), transparent 70%); }
+    .prog-visual::before{  background: radial-gradient(closest-side, rgba(217,70,239,.55), rgba(99,102,241,.45), transparent 70%); }
+
+    /* Colored top stripe */
+    .stripe { position:absolute; inset:0 0 auto 0; height:6px; }
+    .stripe.science{ background: linear-gradient(90deg, #10b981, #3b82f6); }
+    .stripe.arts{    background: linear-gradient(90deg, #f43f5e, #a855f7); }
+    .stripe.business{background: linear-gradient(90deg, #eab308, #E8A200); }
+    .stripe.agric{   background: linear-gradient(90deg, #84cc16, #22c55e); }
+    .stripe.home{    background: linear-gradient(90deg, #f97316, #ea580c); }
+    .stripe.visual{  background: linear-gradient(90deg, #d946ef, #6366f1); }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-ink dark:text-zinc-100">
+  <div class="relative min-h-screen w-full flex flex-col">
+
+    <!-- Header / Navbar (brand-matched) -->
+    <header class="sticky top-0 z-[60] backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-secondary/40 border-b border-zinc-200/60 dark:border-zinc-800/60">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between py-3">
+          <a href="index.html" class="flex items-center gap-3" aria-label="Victory Educational Institute">
+            <img src="logo.jpg" alt="Victory Educational Institute logo" class="h-12 w-auto md:h-14 logo-shadow">
+            <div class="leading-tight">
+              <div class="text-base md:text-lg font-black tracking-tightest">VICTORY <span class="text-primary">EDUCATIONAL INSTITUTE</span></div>
+              <div class="text-[11px] md:text-xs text-secondary/90">“Victory Through Discipline and Knowledge”</div>
+            </div>
+          </a>
+
+          <nav class="hidden md:flex items-center gap-6">
+            <a class="hover:text-primary transition" href="index.html">Home</a>
+            <a class="hover:text-primary transition" href="about.html">About</a>
+            <a class="text-primary font-semibold" href="academics.html" aria-current="page">Academics</a>
+            <a class="hover:text-primary transition" href="news.html">News</a>
+            <a class="hover:text-primary transition" href="contact.html">Contact</a>
+            <a href="contact.html" class="rounded-full bg-primary px-4 py-2 text-white font-semibold shadow-glow">Apply Now</a>
+          </nav>
+
+          <button id="menuBtn" class="md:hidden rounded-lg p-2 hover:bg-primary/10" aria-label="Open menu">
+            <svg width="26" height="26" viewBox="0 0 256 256" fill="currentColor"><path d="M216 72H40a8 8 0 0 1 0-16h176a8 8 0 0 1 0 16Zm0 56H40a8 8 0 0 1 0-16h176a8 8 0 0 1 0 16Zm0 56H40a8 8 0 0 1 0-16h176a8 8 0 0 1 0 16Z"/></svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pb-3">
+          <div class="grid gap-2 p-3 rounded-xl glass shadow-soft">
+            <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="index.html">Home</a>
+            <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="about.html">About</a>
+            <a class="rounded-lg px-3 py-2 bg-primary/10 text-primary" href="academics.html" aria-current="page">Academics</a>
+            <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="news.html">News</a>
+            <a class="rounded-lg px-3 py-2 hover:bg-primary/10" href="contact.html">Contact</a>
+            <a class="rounded-full bg-primary text-white font-semibold px-4 py-2 w-max" href="contact.html">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <!-- HERO -->
+      <section class="relative h-[56vh] md:h-[64vh] bg-cover bg-center parallax-hero"
+               style="background-image: linear-gradient(0deg, rgba(63,25,79,.70), rgba(0,0,0,.20)), url('campuslife.jpg');">
+        <div class="absolute inset-0 flex items-center justify-center text-center text-white px-4">
+          <div>
+            <h1 data-parallax class="text-4xl md:text-6xl font-black drop-shadow-xl fade-up show">Our Programs</h1>
+            <p class="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg opacity-95 fade-up show" style="transition-delay:var(--delay);">
+              Strong <b>SHS pathways</b> designed to help every learner thrive in academics, values, and leadership.
+            </p>
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">General Science</span>
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">General Arts</span>
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">Business</span>
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">General Agric</span>
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">Home Economics</span>
+              <span class="rounded-full bg-white/15 border border-white/30 px-4 py-1 text-sm">Visual Arts</span>
+            </div>
+            <div class="mt-7">
+              <a href="contact.html" class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-white font-semibold lift">
+                Get Admission
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66A8,8,0,0,1,149.66,50.34l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs carousel (quick glance) -->
+      <section class="container mx-auto px-4 py-10">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl md:text-3xl font-extrabold slide-left show">Programs Offered</h2>
+          <a class="text-primary font-semibold hover:underline slide-left show" style="transition-delay:.08s" href="#all-programs">View All</a>
+        </div>
+
+        <div class="no-scrollbar overflow-x-auto pb-2 flex gap-4">
+          <!-- Colored mini-cards -->
+          <article class="min-w-[240px] program-card prog-science lift slide-left show">
+            <div class="stripe science" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-emerald-700 dark:text-emerald-300"><span>🧪</span><span>General Science</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">STEM foundations, labs & inquiry.</p>
+              <span class="mt-3 program-chip">Lab • E-Math</span>
+            </div>
+          </article>
+
+          <article class="min-w-[240px] program-card prog-arts lift slide-left show" style="transition-delay:.06s">
+            <div class="stripe arts" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-rose-700 dark:text-rose-300"><span>📚</span><span>General Arts</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Languages, social sciences & humanities.</p>
+              <span class="mt-3 program-chip">Govt • Lit</span>
+            </div>
+          </article>
+
+          <article class="min-w-[240px] program-card prog-business lift slide-left show" style="transition-delay:.12s">
+            <div class="stripe business" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-amber-700 dark:text-amber-300"><span>💼</span><span>Business</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Accounting, management & entrepreneurship.</p>
+              <span class="mt-3 program-chip">Acc • Econs</span>
+            </div>
+          </article>
+
+          <article class="min-w-[240px] program-card prog-agric lift slide-left show" style="transition-delay:.18s">
+            <div class="stripe agric" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-lime-700 dark:text-lime-300"><span>🌾</span><span>General Agric</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Crop/animal science & fieldwork.</p>
+              <span class="mt-3 program-chip">Field • Practicals</span>
+            </div>
+          </article>
+
+          <article class="min-w-[240px] program-card prog-home lift slide-left show" style="transition-delay:.24s">
+            <div class="stripe home" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-orange-700 dark:text-orange-300"><span>🍳</span><span>Home Economics</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Nutrition, textiles & life skills.</p>
+              <span class="mt-3 program-chip">Food • Textiles</span>
+            </div>
+          </article>
+
+          <article class="min-w-[240px] program-card prog-visual lift slide-left show" style="transition-delay:.30s">
+            <div class="stripe visual" aria-hidden="true"></div>
+            <div class="p-4">
+              <div class="program-head text-fuchsia-700 dark:text-fuchsia-300"><span>🎨</span><span>Visual Arts</span></div>
+              <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Drawing, design & portfolio prep.</p>
+              <span class="mt-3 program-chip">Studio • Design</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- All Programs (detailed, SHS only per your list) -->
+      <section id="all-programs" class="container mx-auto px-4 pb-4">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="program-card prog-science p-6 md:p-8 slide-left show">
+            <div class="stripe science" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-emerald-700 dark:text-emerald-300">🧪 General Science</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Core & Elective Science</li><li>Mathematics & Elective Math</li><li>ICT Literacy</li><li>Project-based Labs</li>
+            </ul>
+          </div>
+
+          <div class="program-card prog-arts p-6 md:p-8 slide-left show" style="transition-delay:.06s">
+            <div class="stripe arts" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-rose-700 dark:text-rose-300">📚 General Arts</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Languages & Literature</li><li>Government & History</li><li>Geography & Social Studies</li><li>Critical Writing</li>
+            </ul>
+          </div>
+
+          <div class="program-card prog-business p-6 md:p-8 slide-left show" style="transition-delay:.12s">
+            <div class="stripe business" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-amber-700 dark:text-amber-300">💼 Business</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Accounting</li><li>Business Management</li><li>Economics</li><li>Entrepreneurship</li>
+            </ul>
+          </div>
+
+          <div class="program-card prog-agric p-6 md:p-8 slide-left show" style="transition-delay:.18s">
+            <div class="stripe agric" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-lime-700 dark:text-lime-300">🌾 General Agric</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Crop Science</li><li>Animal Husbandry</li><li>Agric Economics</li><li>Field Practicals</li>
+            </ul>
+          </div>
+
+          <div class="program-card prog-home p-6 md:p-8 slide-left show" style="transition-delay:.24s">
+            <div class="stripe home" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-orange-700 dark:text-orange-300">🍳 Home Economics</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Nutrition & Food Science</li><li>Textiles & Clothing</li><li>Home Management</li><li>Practical Labs</li>
+            </ul>
+          </div>
+
+          <div class="program-card prog-visual p-6 md:p-8 slide-left show" style="transition-delay:.30s">
+            <div class="stripe visual" aria-hidden="true"></div>
+            <h3 class="text-2xl font-extrabold mb-3 text-fuchsia-700 dark:text-fuchsia-300">🎨 Visual Arts</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-zinc-700 dark:text-zinc-300">
+              <li>Drawing & Painting</li><li>Design Fundamentals</li><li>Sculpture/Applied Arts</li><li>Portfolio Development</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admissions CTA (no prospectus placeholder) -->
+      <section class="container mx-auto px-4 py-12">
+        <div class="rounded-2xl bg-primary/10 dark:bg-primary/20 p-8 md:p-10 text-center slide-left show">
+          <h3 class="text-2xl md:text-3xl font-extrabold">Ready to Apply?</h3>
+          <p class="mt-3 max-w-2xl mx-auto text-zinc-700 dark:text-zinc-300">
+            Entry for SHS applicants. Upload required documents (certificates, passport photo). Process:
+            <span class="font-semibold text-secondary">Application → Review → Interview/Placement → Acceptance</span>.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3 justify-center">
+            <a href="contact.html" class="rounded-full bg-primary px-8 py-3 text-white font-bold lift">Start Application</a>
+            <a href="contact.html" class="rounded-full border-2 border-secondary text-secondary px-8 py-3 font-bold hover:bg-secondary/10">Admission Guidelines</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs marquee divider -->
+      <section class="overflow-hidden border-y border-zinc-200/70 dark:border-zinc-800/70 bg-white/70 dark:bg-secondary/20">
+        <div class="flex whitespace-nowrap animate-marquee">
+          <div class="flex items-center gap-8 py-3 text-sm font-semibold px-4">
+            <span>General Science</span><span>•</span>
+            <span>General Arts</span><span>•</span>
+            <span>General Agric</span><span>•</span>
+            <span>Business</span><span>•</span>
+            <span>Home Economics</span><span>•</span>
+            <span>Visual Arts</span><span>•</span>
+          </div>
+          <div class="flex items-center gap-8 py-3 text-sm font-semibold px-4" aria-hidden="true">
+            <span>General Science</span><span>•</span>
+            <span>General Arts</span><span>•</span>
+            <span>General Agric</span><span>•</span>
+            <span>Business</span><span>•</span>
+            <span>Home Economics</span><span>•</span>
+            <span>Visual Arts</span><span>•</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-secondary/30 backdrop-blur mt-8">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div class="flex items-center gap-4">
+            <img src="logo.jpg" style="height:52px;width:auto" class="logo-shadow" alt="Victory Educational Institute"/>
+            <div class="text-sm text-zinc-700 dark:text-zinc-200">
+              © <span id="yr"></span> Victory Educational Institute. All rights reserved.
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 md:justify-end">
+            <a href="#" class="text-sm hover:text-primary">Facebook</a>
+            <a href="#" class="text-sm hover:text-primary">Instagram</a>
+            <a href="#" class="text-sm hover:text-primary">TikTok</a>
+            <a href="https://wa.me/233554940125?text=Hello%20Victory%20Educational%20Institute%2C%20I%27d%20like%20to%20make%20an%20enquiry."
+               class="text-sm hover:text-primary" target="_blank" rel="noopener">WhatsApp</a>
+            <span class="text-sm text-zinc-700 dark:text-zinc-300">053 847 8588 / 055 494 0125</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/233554940125?text=Hello%20Victory%20Educational%20Institute%2C%20I%27m%20interested%20in%20admissions."
+       class="fixed right-4 bottom-4 z-[80] rounded-full bg-primary text-white shadow-glow px-5 py-3 font-bold hover:translate-y-[-2px] transition"
+       aria-label="Chat on WhatsApp">Chat • WhatsApp</a>
+  </div>
+
+  <!-- Interactivity & Animations -->
+  <script>
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Mobile menu + subtle cascade
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const hidden = menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      if (!hidden) return;
+      menu.querySelectorAll('a').forEach((el,i)=> {
+        el.style.opacity = 0; el.style.transform = 'translateY(6px)';
+        setTimeout(()=>{ el.style.transition='all .25s ease'; el.style.opacity=1; el.style.transform='translateY(0)'; }, 40 + i*40);
+      });
+    });
+
+    // Intersection animations
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, {threshold:.14});
+    document.querySelectorAll('.slide-left, .fade-up').forEach(el=> io.observe(el));
+
+    // Parallax in hero
+    const hero = document.querySelector('.parallax-hero');
+    const parallaxNodes = hero?.querySelectorAll('[data-parallax], .fade-up');
+    window.addEventListener('scroll', () => {
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const p = Math.max(0, Math.min(1, 1 - rect.top / rect.height));
+      parallaxNodes?.forEach(n => n.style.transform = `translateY(${(1-p)*12}px)`);
+    });
+  </script>
+</body>
+</html>

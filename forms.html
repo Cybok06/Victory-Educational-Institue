@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Admissions • Victory Educational Institute – Admission Form</title>
+
+<!-- Tailwind + Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&display=swap"></noscript>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link rel="icon" href="logo.jpg" type="image/jpeg"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary:"#E8A200",     /* Gold */
+          secondary:"#3F194F",   /* Deep Purple */
+          ink:"#0b1220",
+          line:"#d1d5db"
+        },
+        fontFamily:{ display:["Work Sans","system-ui","sans-serif"] }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{ --watermark-url: url("logo.jpg"); }
+  body{
+    background:#f6f6f6;
+    font-family:'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:#0b1220;
+  }
+
+  /* A4 sheet look (screen responsive, print exact A4) */
+  .sheet{
+    width:100%;
+    max-width:210mm;               /* cap to A4 width on larger screens */
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+    position:relative;
+    margin:16px auto;
+  }
+  @media (min-width:480px){ .sheet{ margin:24px auto; } }
+
+  /* Watermark (logo center, faint) */
+  .sheet::after{
+    content:"";
+    position:absolute;
+    inset:15% 7% 8% 7%;
+    background-image:var(--watermark-url);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:72% auto;
+    opacity:.08;
+    pointer-events:none;
+  }
+
+  /* Underline inputs to mimic paper form */
+  .line-input{
+    display:block; width:100%; background:transparent; border:0;
+    border-bottom:1px solid #9ca3af; padding:2px 0 4px 0; color:#0b1220; outline:none;
+  }
+  .line-input::placeholder{ color:#9ca3af; }
+
+  /* Print to A4 */
+  @page{ size:A4; margin:14mm; }
+  @media print{
+    body{ background:#fff; }
+    .no-print{ display:none !important; }
+    .sheet{ width:210mm; min-height:297mm; margin:0; box-shadow:none; }
+    .sheet::after{
+      inset:80mm 25mm 40mm 25mm;
+      background-size:70% auto;
+      opacity:.10;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top actions (screen only) -->
+<header class="sticky top-0 z-20 bg-white/90 backdrop-blur shadow-sm no-print">
+  <div class="max-w-[210mm] mx-auto px-4 py-3 flex items-center justify-between">
+    <span class="text-sm text-gray-600">Victory Educational Institute • Agona Swedru</span>
+    <div class="flex items-center gap-2">
+      <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">
+        Download Filled PDF
+      </button>
+      <button id="resetBtn" class="inline-flex items-center gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">
+        Clear Form
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- A4 Admissions Form -->
+<form id="veiForm" class="sheet px-4 sm:px-8 md:px-10 py-6 sm:py-8">
+
+  <!-- Header -->
+  <div class="text-center">
+    <div class="flex items-center justify-center gap-3">
+      <img src="logo.jpg" alt="Victory Educational Institute Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain" onerror="this.style.display='none'">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold tracking-wide">VICTORY EDUCATIONAL INSTITUTE</h2>
+        <p class="text-[11px] sm:text-[12px] leading-tight">
+          <span class="font-medium">TEL:</span> 053 847 8588 / 055 494 0125
+          &nbsp;&nbsp; <span class="font-medium">EMAIL:</span> victoryeducationalinstitute86@gmail.com
+          &nbsp;&nbsp; <span class="font-medium">LOCATION:</span> Agona Swedru
+        </p>
+      </div>
+    </div>
+    <div class="mt-3 font-bold tracking-wide">ADMISSION FORM</div>
+  </div>
+
+  <hr class="border-line my-4">
+
+  <!-- Numbered fields -->
+  <section class="space-y-3 text-[14px]">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">1.</span><label class="sm:min-w-[160px]">Surname:</label><input name="surname" class="line-input" required>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">2.</span><label class="sm:min-w-[160px]">First Name:</label><input name="first_name" class="line-input" required>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">3.</span><label class="sm:min-w-[160px]">Other Names:</label><input name="other_names" class="line-input">
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">4.</span><label class="sm:min-w-[160px]">Date of Birth:</label><input name="dob" type="date" class="line-input" required>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">5.</span><label class="sm:min-w-[160px]">Year of Completing JHS:</label>
+      <input name="year_complete_jhs" type="number" inputmode="numeric" class="line-input" placeholder="YYYY">
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">6.</span><label class="sm:min-w-[160px]">JHS Index Number:</label><input name="jhs_index" class="line-input">
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">7.</span><label class="sm:min-w-[160px]">Programme / Course:</label>
+      <input name="programme" class="line-input" list="programmes" required>
+      <datalist id="programmes">
+        <option value="General Science"></option>
+        <option value="General Arts"></option>
+        <option value="General Agric"></option>
+        <option value="Business"></option>
+        <option value="Home Economics"></option>
+        <option value="Visual Arts"></option>
+      </datalist>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+      <span class="sm:w-6">8.</span><label class="sm:min-w-[160px]">Gender:</label>
+      <div class="flex items-center gap-6">
+        <label class="inline-flex items-center gap-2"><input type="radio" name="gender" value="Male" required>Male</label>
+        <label class="inline-flex items-center gap-2"><input type="radio" name="gender" value="Female" required>Female</label>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">9.</span><label class="sm:min-w-[160px]">Personal Telephone Number:</label><input name="phone" type="tel" class="line-input" required>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">10.</span><label class="sm:min-w-[160px]">Location:</label><input name="location" class="line-input" placeholder="Agona Swedru" required>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+      <span class="sm:w-6">11.</span><label class="sm:min-w-[160px]">Email Address:</label><input name="email" type="email" class="line-input" placeholder="name@example.com">
+    </div>
+  </section>
+
+  <!-- Elective Subjects -->
+  <section class="mt-6">
+    <h3 class="font-semibold text-[14px] text-secondary">ELECTIVE SUBJECTS</h3>
+    <div class="mt-2 space-y-3 text-[14px]">
+      <div class="flex items-center gap-3"><span class="w-6">1.</span><input name="elective1" class="line-input"></div>
+      <div class="flex items-center gap-3"><span class="w-6">2.</span><input name="elective2" class="line-input"></div>
+      <div class="flex items-center gap-3"><span class="w-6">3.</span><input name="elective3" class="line-input"></div>
+      <div class="flex items-center gap-3"><span class="w-6">4.</span><input name="elective4" class="line-input"></div>
+    </div>
+  </section>
+
+  <!-- Guardian / Parent Info -->
+  <section class="mt-6">
+    <h3 class="font-semibold text-[14px] text-secondary">GUARDIAN / PARENT INFO</h3>
+    <div class="mt-2 space-y-3 text-[14px]">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <label class="sm:min-w-[140px]">Name:</label><input name="guardian_name" class="line-input" required>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <label class="sm:min-w-[140px]">Contact:</label><input name="guardian_contact" class="line-input" required>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <label class="sm:min-w-[140px]">Location:</label><input name="guardian_location" class="line-input" required>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <label class="sm:min-w-[140px]">Occupation:</label><input name="guardian_occupation" class="line-input">
+      </div>
+    </div>
+  </section>
+
+  <!-- Publicity consent (as per form flow) -->
+  <section class="mt-6 text-[14px]">
+    <h3 class="font-semibold text-secondary">PUBLICITY CONSENT</h3>
+    <p class="text-[13px] text-gray-700 mt-1">If you excel academically, can the school request to use your achievement in promotions?</p>
+    <div class="mt-2 flex items-center gap-6">
+      <label class="inline-flex items-center gap-2"><input type="radio" name="consent_publicity" value="Yes" required>Yes</label>
+      <label class="inline-flex items-center gap-2"><input type="radio" name="consent_publicity" value="No" required>No</label>
+    </div>
+  </section>
+
+  <!-- Terms & Conditions -->
+  <section class="mt-6 text-[14px]">
+    <h3 class="font-semibold text-secondary">TERMS & CONDITIONS</h3>
+    <ol class="list-decimal ml-5 mt-1 space-y-1 text-[13px]">
+      <li>60% payment of total amount before biometric registration and full payment before the release of candidate’s index number.</li>
+      <li>Money paid is not refundable.</li>
+      <li>Fees can be paid monthly.</li>
+      <li>Publicity consent applies only with the student/guardian’s approval (see option above).</li>
+    </ol>
+  </section>
+
+  <!-- Signatures -->
+  <section class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 text-[14px]">
+    <div>
+      <label>Student’s Signature (type full name)</label>
+      <input name="student_signature" class="line-input" required placeholder="Full name as signature">
+    </div>
+    <div>
+      <label>Date</label>
+      <input name="student_sig_date" type="date" class="line-input">
+    </div>
+  </section>
+
+  <!-- Official Use Only -->
+  <section class="mt-6 text-[14px]">
+    <h3 class="font-semibold mb-2 text-secondary">OFFICIAL USE ONLY</h3>
+    <div class="rounded-md border border-gray-400 p-3 space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+        <label class="sm:min-w-[160px]">Director’s Remark:</label>
+        <input name="director_remark" class="line-input">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[60px]">Sign:</label>
+          <input name="office_signature" class="line-input">
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <label class="sm:min-w-[60px]">Date:</label>
+          <input name="office_date" type="date" class="line-input">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="mt-6 text-center text-[11px] text-gray-500">© <span id="yr"></span> Victory Educational Institute • Agona Swedru</footer>
+</form>
+
+<!-- Bottom bar (screen only, optional) -->
+<footer class="no-print bg-white/95 backdrop-blur border-t border-gray-200">
+  <nav class="max-w-[210mm] mx-auto flex justify-around p-2 text-xs text-gray-600">
+    <span class="text-primary font-medium">Admissions</span>
+    <a class="hover:text-primary" href="index.html">Home</a>
+    <a class="hover:text-primary" href="about.html">About</a>
+    <a class="hover:text-primary" href="academics.html">Academics</a>
+    <a class="hover:text-primary" href="news.html">News</a>
+    <a class="hover:text-primary" href="contact.html">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // LocalStorage autosave + restore
+  const FORM_ID = 'veiForm';
+  const STORAGE_KEY = 'vei_admission_form_v1';
+  const form = document.getElementById(FORM_ID);
+
+  (function restoreForm(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw) || {};
+      for (const name in data) {
+        if (!Object.prototype.hasOwnProperty.call(data, name)) continue;
+        const val = data[name];
+        const nodes = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+        if (!nodes.length) continue;
+
+        if (nodes[0].type === 'radio') {
+          nodes.forEach(r => r.checked = (r.value === val));
+        } else if (nodes[0].type === 'checkbox') {
+          nodes[0].checked = !!val;
+        } else {
+          nodes[0].value = val;
+        }
+      }
+    }catch(e){ console.warn('Restore failed', e); }
+  })();
+
+  function snapshotForm(){
+    const data = {};
+    const els = form.elements;
+    for (let i=0;i<els.length;i++){
+      const el = els[i];
+      if (!el.name) continue;
+      if (el.type === 'radio'){ if (el.checked) data[el.name] = el.value; }
+      else if (el.type === 'checkbox'){ data[el.name] = el.checked; }
+      else { data[el.name] = el.value; }
+    }
+    data._updatedAt = Date.now();
+    return data;
+  }
+
+  let t=null;
+  function queueSave(){
+    clearTimeout(t);
+    t = setTimeout(()=>{ try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotForm()));
+    }catch(e){} }, 250);
+  }
+  form.addEventListener('input', queueSave, true);
+  form.addEventListener('change', queueSave, true);
+
+  // Clear form + storage
+  document.getElementById('resetBtn')?.addEventListener('click', () => {
+    form.reset();
+    form.querySelectorAll('input[type="date"]').forEach(el => el.value = "");
+    localStorage.removeItem(STORAGE_KEY);
+  });
+
+  // Save before print
+  window.addEventListener('beforeprint', () => {
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotForm())); }catch(e){}
+  });
+</script>
+</body>
+</html>
