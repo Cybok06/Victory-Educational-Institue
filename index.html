@@ -12,13 +12,16 @@
   <link rel="canonical" href="https://victoryei.example/"/>
 
   <!-- Open Graph / Social -->
+  <meta property="og:locale" content="en_GB"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="VICTORY EDUCATIONAL INSTITUTE | Agona Swedru • SHS Programs & Admissions"/>
   <meta property="og:description" content="Victory Through Discipline and Knowledge. Explore our SHS programs and admissions."/>
   <meta property="og:url" content="https://victoryei.example/"/>
   <meta property="og:site_name" content="Victory Educational Institute"/>
   <meta property="og:image" content="https://victoryei.example/images/og-cover.jpg"/>
-  <meta property="og:image:alt" content="Victory Educational Institute campus and students"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="Victory Educational Institute campus in Agona Swedru"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="VICTORY EDUCATIONAL INSTITUTE | Agona Swedru • SHS Programs & Admissions"/>
   <meta name="twitter:description" content="Victory Through Discipline and Knowledge. Explore our SHS programs and admissions."/>
@@ -28,10 +31,16 @@
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
   <link rel="alternate" href="https://victoryei.example/" hreflang="en"/>
 
-  <!-- Icons / Theme -->
-  <link rel="icon" href="logo.jpg" type="image/jpeg"/>
-  <link rel="apple-touch-icon" href="logo.jpg"/>
+  <!-- Favicons / Logo (helps Google show your logo) -->
+  <link rel="icon" href="https://victoryei.example/logo-32.png" type="image/png" sizes="32x32"/>
+  <link rel="icon" href="https://victoryei.example/logo-192.png" type="image/png" sizes="192x192"/>
+  <link rel="apple-touch-icon" href="https://victoryei.example/logo-180.png" sizes="180x180"/>
+  <link rel="mask-icon" href="https://victoryei.example/logo.svg" color="#E8A200">
   <meta name="theme-color" content="#E8A200"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+
+  <!-- (Optional) Verify in Search Console -->
+  <!-- <meta name="google-site-verification" content="PASTE_TOKEN_HERE" /> -->
 
   <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -86,26 +95,69 @@
     .logo-shadow { filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)) drop-shadow(0 2px 4px rgba(232,162,0,.25)); }
   </style>
 
-  <!-- JSON-LD: School -->
+  <!-- JSON-LD: Organization (lets Google pick your logo) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "School",
+    "@type": "Organization",
     "name": "Victory Educational Institute",
-    "alternateName": "VICTORY EDUCATIONAL INSTITUTE",
     "url": "https://victoryei.example/",
-    "logo": "https://victoryei.example/logo.png",
-    "image": "https://victoryei.example/images/og-cover.jpg",
-    "address": { "@type": "PostalAddress", "addressLocality": "Agona Swedru", "addressCountry": "GH" },
-    "telephone": "+233554940125",
-    "contactPoint": { "@type": "ContactPoint", "contactType": "Admissions", "telephone": "+233554940125", "email": "victoryeducationalinstitute86@gmail.com", "areaServed": "GH", "availableLanguage": ["en"] }
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://victoryei.example/logo-512.png",
+      "width": 512,
+      "height": 512
+    },
+    "sameAs": [
+      "https://www.facebook.com/victoryei",
+      "https://www.instagram.com/victoryei",
+      "https://www.tiktok.com/@victoryeducationalint"
+    ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "Admissions",
+      "telephone": "+233554940125",
+      "email": "victoryeducationalinstitute86@gmail.com",
+      "areaServed": "GH",
+      "availableLanguage": ["en"]
+    }]
   }
   </script>
 
-  <!-- JSON-LD: Website -->
+  <!-- JSON-LD: School (specific entity for knowledge panel) -->
   <script type="application/ld+json">
-  { "@context": "https://schema.org", "@type": "WebSite", "name": "Victory Educational Institute", "url": "https://victoryei.example/",
-    "potentialAction": { "@type": "Action", "name": "Apply for Admission", "target": "https://victoryei.example/contact.html" } }
+  {
+    "@context": "https://schema.org",
+    "@type": "HighSchool",
+    "name": "Victory Educational Institute",
+    "slogan": "Victory Through Discipline and Knowledge",
+    "url": "https://victoryei.example/",
+    "image": "https://victoryei.example/images/og-cover.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Agona Swedru",
+      "addressCountry": "GH"
+    },
+    "telephone": "+233553 490 125",
+    "areaServed": "GH",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 5.532,
+      "longitude": -0.699
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: Breadcrumbs (helps sitelinks) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type":"ListItem", "position":1, "name":"Home", "item":"https://victoryei.example/" },
+      { "@type":"ListItem", "position":2, "name":"Admissions", "item":"https://victoryei.example/contact.html" }
+    ]
+  }
   </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-ink dark:text-zinc-100">
@@ -117,8 +169,7 @@
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-3">
         <a href="index.html" class="flex items-center gap-3" aria-label="Victory Educational Institute">
-          <!-- Bigger logo + shadow -->
-          <img src="logo.jpg" class="h-12 w-auto md:h-14 logo-shadow" alt="Victory Educational Institute logo">
+          <img src="https://victoryei.example/logo-180.png" width="56" height="56" class="h-12 w-auto md:h-14 logo-shadow" alt="Victory Educational Institute logo">
           <div class="leading-tight">
             <div class="text-base md:text-lg font-black tracking-tightest">VICTORY <span class="text-primary">EDUCATIONAL INSTITUTE</span></div>
             <div class="text-[11px] md:text-xs text-secondary/90">“Victory Through Discipline and Knowledge”</div>
@@ -156,7 +207,7 @@
   <main>
     <!-- HERO: split layout -->
     <section class="relative overflow-hidden">
-      <div class="hero-shape animate-floaty"></div>
+      <div class="hero-shape animate-floaty" aria-hidden="true"></div>
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-10 items-center py-10 md:py-16">
           <div class="reveal" style="transition-delay:120ms">
@@ -190,8 +241,7 @@
           </div>
 
           <div class="relative h-[50vh] md:h-[64vh] rounded-2xl overflow-hidden shadow-soft reveal" style="transition-delay:180ms">
-            <img src="flyerone.jpg" alt="Students at Victory Educational Institute" class="h-full w-full object-cover">
-            <!-- floating cards -->
+            <img src="flyerone.jpg" width="1280" height="960" alt="Students at Victory Educational Institute in Agona Swedru" class="h-full w-full object-cover" loading="eager" fetchpriority="high">
             <div class="absolute left-4 top-4 md:left-6 md:top-6">
               <div class="glass rounded-2xl p-4 shadow-soft animate-floaty">
                 <div class="text-xs text-zinc-700">Motto</div>
@@ -262,20 +312,19 @@
 
         <div class="grid gap-4">
           <div class="rounded-2xl overflow-hidden tilt shadow-soft">
-            <img src="realitypic.jpg" class="w-full h-56 object-cover" alt="Campuslife">
+            <img src="realitypic.jpg" width="1200" height="900" class="w-full h-56 object-cover" alt="Victory Educational Institute campus building" loading="lazy">
           </div>
           <div class="rounded-2xl overflow-hidden tilt shadow-soft">
-            <img src="teacherteaching.jpg" class="w-full h-56 object-cover" alt="Students learning">
+            <img src="teacherteaching.jpg" width="1200" height="900" class="w-full h-56 object-cover" alt="Teacher delivering a lesson" loading="lazy">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROGRAMS (card grid with hover tilt) -->
+    <!-- PROGRAMS -->
     <section class="container mx-auto px-4 py-4">
       <h2 class="text-center text-3xl md:text-4xl font-extrabold mb-10">Programs & Courses</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Card template -->
         <div class="group rounded-2xl p-5 bg-white/80 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 shadow-soft tilt reveal">
           <h3 class="text-xl font-extrabold text-primary">General Science</h3>
           <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Build strong foundations in mathematics and the sciences for STEM pathways.</p>
@@ -307,10 +356,9 @@
           <div class="mt-4 flex items-center gap-2 text-secondary font-semibold">Learn more <span class="group-hover:translate-x-1 transition">→</span></div>
         </div>
       </div>
-      <!-- Prospectus section removed as requested -->
     </section>
 
-    <!-- ADMISSIONS TIMELINE -->
+    <!-- ADMISSIONS -->
     <section class="container mx-auto px-4 py-16">
       <div class="rounded-2xl p-8 bg-white/80 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 shadow-soft">
         <h2 class="text-3xl md:text-4xl font-extrabold text-center">Admissions</h2>
@@ -369,19 +417,18 @@
       </div>
     </section>
 
-    <!-- GALLERY STRIP (auto-scroll) -->
+    <!-- GALLERY -->
     <section class="py-12">
       <div class="overflow-hidden">
         <div class="flex gap-4 w-[200%] animate-marquee">
-          <img src="flyer3.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 1">
-          <img src="Studentlearning.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 2">
-          <img src="realitypic.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 3">
-          <img src="campuslife.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 4">
-          <!-- duplicate for seamless loop -->
-          <img src="teacherteaching.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 1 duplicate" aria-hidden="true">
-          <img src="BoysLearning.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 2 duplicate" aria-hidden="true">
-          <img src="campuslife.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 3 duplicate" aria-hidden="true">
-          <img src="GirlsDiscussing.jpg" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Gallery 4 duplicate" aria-hidden="true">
+          <img src="flyer3.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Students event poster" loading="lazy">
+          <img src="Studentlearning.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Students learning in class" loading="lazy">
+          <img src="realitypic.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Campus buildings and lawns" loading="lazy">
+          <img src="campuslife.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Active campus life" loading="lazy">
+          <img src="teacherteaching.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Teacher during lesson" loading="lazy" aria-hidden="true">
+          <img src="BoysLearning.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Group study session" loading="lazy" aria-hidden="true">
+          <img src="campuslife.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="School activities" loading="lazy" aria-hidden="true">
+          <img src="GirlsDiscussing.jpg" width="960" height="560" class="h-56 w-96 object-cover rounded-2xl shadow-soft" alt="Discussion group" loading="lazy" aria-hidden="true">
         </div>
       </div>
     </section>
@@ -392,15 +439,15 @@
     <div class="container mx-auto px-4 py-8">
       <div class="grid md:grid-cols-2 gap-6 items-center">
         <div class="flex items-center gap-4">
-          <img src="logo.jpg" style="height:52px;width:auto" class="logo-shadow" alt="Victory Educational Institute"/>
+          <img src="https://victoryei.example/logo-180.png" width="52" height="52" class="logo-shadow" alt="Victory Educational Institute logo"/>
           <div class="text-sm text-zinc-700 dark:text-zinc-200">
             © <span id="yr"></span> Victory Educational Institute. All rights reserved.
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-4 md:justify-end">
-          <a href="#" class="text-sm hover:text-primary">Facebook</a>
-          <a href="#" class="text-sm hover:text-primary">Instagram</a>
-          <a href="https://www.tiktok.com/@victoryeducationalint" class="text-sm hover:text-primary">TikTok</a>
+          <a href="https://web.facebook.com/victoryei" class="text-sm hover:text-primary" rel="me">Facebook</a>
+          <a href="https://www.instagram.com/victoryei" class="text-sm hover:text-primary" rel="me">Instagram</a>
+          <a href="https://www.tiktok.com/@victoryeducationalint" class="text-sm hover:text-primary" rel="me">TikTok</a>
           <a href="https://wa.me/233554940125?text=Hello%20Victory%20Educational%20Institute%2C%20I%27d%20like%20to%20make%20an%20enquiry." class="text-sm hover:text-primary" target="_blank" rel="noopener">WhatsApp</a>
           <span class="text-sm text-zinc-700 dark:text-zinc-300">053 847 8588 / 055 494 0125</span>
         </div>
@@ -425,7 +472,6 @@
       const hidden = menu.classList.contains('hidden');
       menu.classList.toggle('hidden');
       if (!hidden) return;
-      // slight fade
       menu.querySelectorAll('a').forEach((el,i)=> {
         el.style.opacity = 0; el.style.transform = 'translateY(6px)';
         setTimeout(()=>{ el.style.transition='all .25s ease'; el.style.opacity=1; el.style.transform='translateY(0)'; }, 40 + i*40);
